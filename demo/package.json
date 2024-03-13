@@ -1,0 +1,28 @@
+{
+  "name": "demo",
+  "packageManager": "yarn@4.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint \"src/**/*.{js,mjs,cjs,ts,mts,jsx,tsx}\"",
+    "lint:fix": "yarn lint --fix",
+    "preview": "vite --host --port=3000 preview"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "widgets": "../widgets"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@types/node": "20.11.25",
+    "@types/react": "18.2.64",
+    "@types/react-dom": "18.2.21",
+    "@vitejs/plugin-react": "4.2.1",
+    "eslint": "8.57.0",
+    "eslint-kit": "10.19.0",
+    "prettier": "3.2.5",
+    "typescript": "5.4.2",
+    "vite": "5.1.5"
+  }
+}

@@ -1,0 +1,63 @@
+version: '3.9'
+
+networks:
+  testnet:
+    driver: bridge
+
+services:
+  backend_server:
+    container_name: weather-api-server
+    image: weather_api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - testnet
+    depends_on:
+      - backend_tests
+    environment:
+      - TZ=UTC
+    expose:
+      - 4000
+    command: ['yarn', 'start']
+  backend_tests:
+    container_name: weather-api-tests
+    image: weather_api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - testnet
+    environment:
+      - TZ=UTC
+    command: ['yarn', 'test']
+  widgets_storybook:
+    container_name: widgets-library-storybook
+    image: widgets_library
+    networks:
+      - testnet
+    build:
+      context: ./widgets
+      dockerfile: Dockerfile
+    command: ['yarn', 'serve-storybook']
+    environment:
+      - PORT=6006
+    expose:
+      - 6006
+  widgets_tests:
+    container_name: widgets-library-tests
+    image: widgets_library
+    volumes:
+      - ./widgets/__snapshots__:/usr/src/widgets/__snapshots__
+    networks:
+      - testnet
+    depends_on:
+      - widgets_storybook
+      - backend_server
+    environment:
+      - STORYBOOK_URL=http://widgets-library-storybook:6006
+      - API_URL=http://weather-api-server:4000/graphql
+    build:
+      context: ./widgets
+      dockerfile: Dockerfile-test
+    command: ['yarn', 'test']

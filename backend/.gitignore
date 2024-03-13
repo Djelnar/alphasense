@@ -1,0 +1,43 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Swap the comments on the following lines if you wish to use zero-installs
+# In that case, don't forget to run `yarn config set enableGlobalCache false`!
+# Documentation here: https://yarnpkg.com/features/caching#zero-installs
+
+#!.yarn/cache
+.pnp.*
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# env
+.env
+.env.local
+
+# compiled output
+/dist/
+generated
+coverage
+
+# dependencies
+node_modules
+
+# IDE
+.vscode/
+.idea/
+.project
+.classpath
+*.launch
+*.sublime-workspace
+
+# misc
+npm-debug.log
+yarn-error.log
+
+# System Files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.item {
+  flex: 0 0 320px;
+}

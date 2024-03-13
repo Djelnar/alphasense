@@ -1,0 +1,15 @@
+query MediumWidgetQuery($lat: Float!, $lon: Float!, $tempUnit: TempUnit) {
+  getWeather(lat: $lat, lon: $lon, tempUnit: $tempUnit) {
+    current {
+      temp
+      condition
+      daylight
+    }
+    hourly {
+      condition
+      time
+      temp
+      daylight
+    }
+  }
+}

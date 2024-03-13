@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: weather-api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - TZ=UTC
+    ports:
+      - '4000:4000'
+    command: ['yarn', 'start']
+  widgets:
+    container_name: widgets-library
+    image: alphasense_widgets
+    build:
+      context: ./widgets
+      dockerfile: Dockerfile
+  frontend:
+    container_name: webpage-demo
+    depends_on:
+      - widgets
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    command: ['yarn', 'preview']

@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/playwright:v1.42.1-jammy
+
+WORKDIR /usr/src/widgets
+
+COPY package.json .
+COPY yarn.lock .
+COPY .yarnrc.yml .
+COPY .yarn/ ./.yarn/
+
+RUN yarn
+
+COPY .storybook/ ./.storybook/
+COPY tsconfig.json ./
+COPY setupFile.ts ./
+COPY jest.config.js ./
+COPY rollup.config.js ./
+COPY types.generated.ts ./
+COPY src/ ./src/
+
+RUN yarn build
+
+RUN yarn build-storybook
+
+EXPOSE 6006

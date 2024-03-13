@@ -1,0 +1,36 @@
+enum TempUnit {
+  fahrenheit
+  celsius
+}
+
+type HourlyData {
+  time: [Int]
+  temp: [Int]
+  condition: [String]
+  daylight: [Boolean]
+}
+type DailyData {
+  time: [Int]
+  condition: [String]
+  maxTemp: [Int]
+  minTemp: [Int]
+}
+type CurrentData {
+  temp: Int
+  condition: String
+  daylight: Boolean
+}
+
+type WeatherData {
+  current: CurrentData
+  hourly: HourlyData
+  daily: DailyData
+}
+
+type Query {
+  getWeather(
+    lat: Float!
+    lon: Float!
+    tempUnit: TempUnit = celsius
+  ): WeatherData
+}
